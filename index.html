@@ -3,351 +3,364 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AuraPedis - Bien-être & Soins des Pieds</title>
-
-  <!-- DESIGN CSS INJECTÉ DIRECTEMENT -->
+  <title>AuraPedis - Patchs Détox & Apaisants</title>
   <style>
     :root {
-      --primary: #0f5257;        /* Vert sombre élégant */
-      --accent: #25d366;         /* Vert WhatsApp/Action */
-      --light-bg: #f4f9f8;       /* Fond doux bien-être */
-      --text-color: #222222;     /* Texte très lisible */
-      --border-color: #d1e3e1;   /* Bordure subtile */
+      --primary-color: #0f5257;
+      --accent-green: #25d366;
+      --light-bg: #f4f8f7;
+      --text-dark: #222222;
+      --badge-green: #eef9f5;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
       background-color: #ffffff;
-      color: var(--text-color);
-      line-height: 1.5;
+      color: var(--text-dark);
       padding-bottom: 30px;
     }
 
-    /* BANDEAU SUPERIEUR */
+    /* Bandeau supérieur */
     .top-banner {
-      background-color: var(--primary);
-      color: #ffffff;
+      background-color: var(--primary-color);
+      color: white;
       text-align: center;
       padding: 8px 12px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
     }
 
-    /* LOGO */
-    .header {
+    /* En-tête / Logo */
+    header {
+      padding: 15px;
       text-align: center;
-      padding: 15px 0;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid #eee;
     }
 
     .logo {
-      color: var(--primary);
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
-      letter-spacing: 1px;
+      color: var(--primary-color);
+      letter-spacing: -0.5px;
     }
 
-    /* CONTENEUR PRINCIPAL */
     .container {
-      padding: 15px;
       max-width: 500px;
       margin: 0 auto;
-    }
-
-    /* PRODUIT */
-    .product-title {
-      font-size: 20px;
-      color: var(--primary);
-      margin-bottom: 12px;
-      text-align: center;
-      font-weight: 700;
-    }
-
-    .product-image-container {
-      width: 100%;
-      margin-bottom: 15px;
-    }
-
-    .product-image {
-      width: 100%;
-      border-radius: 12px;
-      display: block;
-    }
-
-    /* FORMULAIRE */
-    .checkout-section {
-      background-color: var(--light-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 12px;
       padding: 15px;
-      margin-bottom: 25px;
     }
 
-    .checkout-section h3 {
-      font-size: 16px;
-      color: var(--primary);
+    /* CARROUSEL DÉFILANT */
+    .carousel-container {
+      width: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      border-radius: 16px;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 8px;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .carousel-hint {
       text-align: center;
+      font-size: 12px;
+      color: #888;
       margin-bottom: 15px;
     }
 
-    .pack-selection {
+    /* Titre et Prix */
+    .product-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #111;
+    }
+
+    .price-tag {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+
+    /* Badges Réassurance */
+    .trust-badges {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .badge-item {
+      background-color: var(--badge-green);
+      color: var(--primary-color);
+      border: 1px solid #d0ebe2;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Formulaire de Commande */
+    .checkout-box {
+      background: #fdfdfd;
+      border: 1.5px solid #e2ece9;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+
+    .checkout-header {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-color);
       margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .pack-option {
-      display: flex;
-      align-items: center;
-      background-color: #ffffff;
-      border: 2px solid var(--border-color);
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 8px;
+      display: block;
+      border: 1.5px solid #ddd;
+      border-radius: 12px;
+      padding: 12px 15px;
+      margin-bottom: 10px;
       cursor: pointer;
-      font-size: 14px;
+      position: relative;
+      background: white;
+    }
+
+    .pack-option.selected {
+      border-color: var(--primary-color);
+      background-color: #f0f7f6;
     }
 
     .pack-option input {
       margin-right: 10px;
-      accent-color: var(--primary);
     }
 
-    .field {
+    .form-group {
       margin-bottom: 12px;
     }
 
-    .field label {
+    .form-group label {
+      display: block;
       font-size: 13px;
       font-weight: 600;
-      color: var(--primary);
+      margin-bottom: 5px;
     }
 
-    .field input {
+    .form-group input, .form-group select {
       width: 100%;
       padding: 12px;
-      border: 1px solid #cccccc;
+      border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 15px;
-      margin-top: 4px;
-      outline: none;
     }
 
-    .field input:focus {
-      border-color: var(--primary);
-    }
-
-    .submit-button {
+    .btn-submit {
       width: 100%;
-      background-color: var(--accent);
-      color: #ffffff;
+      background-color: var(--primary-color);
+      color: white;
       border: none;
       padding: 16px;
-      font-size: 16px;
+      border-radius: 12px;
+      font-size: 17px;
       font-weight: 700;
-      border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-      text-transform: uppercase;
       margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
 
-    /* BLOCS ARGUMENTAIRES */
-    .problem-box, .solution-box, .usage-box, .ingredients-box {
-      background-color: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
+    /* Content & Videos */
+    .content-section {
+      margin-top: 25px;
     }
 
-    .benefits-section h3 {
-      font-size: 16px;
-      color: var(--primary);
+    .content-block {
+      margin-bottom: 25px;
+    }
+
+    .content-block h3 {
+      font-size: 17px;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+
+    .content-block p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #444;
       margin-bottom: 10px;
     }
 
-    .benefits-section p {
-      font-size: 14px;
-      color: #555555;
-      margin-bottom: 8px;
+    .video-wrapper {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 12px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    .benefit-item {
-      display: flex;
-      align-items: flex-start;
-      margin-top: 10px;
-    }
-
-    .benefit-item span {
-      font-size: 18px;
-      margin-right: 8px;
-    }
-
-    .steps-list, .ingredients-box ul {
-      padding-left: 20px;
-      font-size: 14px;
-      color: #555555;
-    }
-
-    .steps-list li, .ingredients-box ul li {
-      margin-bottom: 8px;
+    video {
+      width: 100%;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <!-- BANDEAU HAUT -->
+  <!-- BANDEAU SUPERIEUR -->
   <div class="top-banner">
-    <p>🚚 Livraison gratuite — Paiement à la livraison (COD)</p>
+    🚚 Livraison gratuite au Cameroun • Paiement à la réception (COD)
   </div>
 
-  <!-- EN-TÊTE -->
-  <header class="header">
-    <h1 class="logo">AuraPedis</h1>
+  <!-- EN-TETE -->
+  <header>
+    <div class="logo">AuraPedis</div>
   </header>
 
   <main class="container">
-    
-    <!-- PRODUIT -->
-    <section class="product-presentation">
-      <h2 class="product-title">Patchs Détox & Apaisants pour les Pieds</h2>
-      <div class="product-image-container">
-        <img src="product.jpg" alt="AuraPedis Patchs Détox" class="product-image">
+
+    <!-- CARROUSEL IMAGES (product.jpg, product1.jpg, product2.jpg) -->
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <img src="product.jpg" alt="AuraPedis Patchs 1" class="carousel-slide">
+        <img src="product1.jpg" alt="AuraPedis Patchs 2" class="carousel-slide">
+        <img src="product2.jpg" alt="AuraPedis Patchs 3" class="carousel-slide">
       </div>
-    </section>
+    </div>
+    <div class="carousel-hint">👈 Glissez pour voir plus d'images 👉</div>
+
+    <!-- TITRE & PRIX -->
+    <h1 class="product-title">Patchs détox pour les pieds</h1>
+    <div class="price-tag">7 999 FCFA</div>
+
+    <!-- BADGES REASSURANCE -->
+    <div class="trust-badges">
+      <div class="badge-item">🚚 Livraison Gratuite</div>
+      <div class="badge-item">💵 Paiement à la Livraison</div>
+    </div>
 
     <!-- FORMULAIRE DE COMMANDE -->
-    <section class="checkout-section">
-      <h3>Commander Maintenant (Paiement à la réception)</h3>
-
-      <form id="orderForm">
-        <div class="pack-selection">
-          <label class="pack-option">
-            <input type="radio" name="pack" value="7999" checked>
-            <span><strong>1 Boîte</strong> - 7 999 FCFA</span>
-          </label>
-
-          <label class="pack-option">
-            <input type="radio" name="pack" value="15999">
-            <span><strong>Pack Duo (-25%)</strong> - 15 999 FCFA</span>
-          </label>
-
-          <label class="pack-option">
-            <input type="radio" name="pack" value="21999">
-            <span><strong>Pack Trio (-41%)</strong> - 21 999 FCFA</span>
-          </label>
-        </div>
-
-        <div class="form-fields">
-          <div class="field">
-            <label for="fullname">Nom complet *</label>
-            <input type="text" id="fullname" placeholder="Votre nom complet" required>
-          </div>
-
-          <div class="field">
-            <label for="phone">Numéro WhatsApp / Téléphone *</label>
-            <input type="tel" id="phone" placeholder="Ex: 6XXXXXXXX" required>
-          </div>
-
-          <div class="field">
-            <label for="city">Ville & Quartier de livraison *</label>
-            <input type="text" id="city" placeholder="Ex: Yaoundé, Bastos" required>
-          </div>
-
-          <button type="submit" class="submit-button">✓ Confirmer ma commande</button>
-        </div>
-      </form>
-    </section>
-
-    <!-- ARGUMENTAIRE DE VENTE -->
-    <section class="benefits-section">
+    <div class="checkout-box">
+      <div class="checkout-header">🛒 Commander Maintenant (Paiement à la livraison)</div>
       
-      <div class="problem-box">
-        <h3>😴 Matin brutal : vous vous réveillez et vous n'en pouvez plus ?</h3>
-        <p>Jambes lourdes, fatigue dès le réveil, sensation d'épuisement... Votre corps accumule les toxines tout au long de la journée.</p>
+      <form id="orderForm">
+        <div class="form-group">
+          <label>Choisissez votre offre :</label>
+          <label class="pack-option selected">
+            <input type="radio" name="pack" value="7999" checked> 1 Boîte — 7 999 FCFA
+          </label>
+          <label class="pack-option">
+            <input type="radio" name="pack" value="15999"> Pack Duo (-25%) — 15 999 FCFA
+          </label>
+          <label class="pack-option">
+            <input type="radio" name="pack" value="21999"> Pack Trio (-45%) — 21 999 FCFA
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Nom complet *</label>
+          <input type="text" id="name" placeholder="Votre nom complet" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Téléphone / WhatsApp *</label>
+          <input type="tel" id="phone" placeholder="+237 ..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="city">Ville / Quartier *</label>
+          <input type="text" id="city" placeholder="Ex: Yaoundé, Bastos" required>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          ✓ Confirmer la Commande
+        </button>
+      </form>
+    </div>
+
+    <!-- SECTIONS DEMONSTRATION VIDEO -->
+    <section class="content-section">
+
+      <!-- PREMIERE VIDEO (detail1.mp4) -->
+      <div class="content-block">
+        <h3>😡 Réveillez-vous enfin en pleine forme</h3>
+        <p>Découvrez comment éliminer l'épuisement et la sensation de jambes lourdes dès la première nuit d'utilisation.</p>
+        <div class="video-wrapper">
+          <video controls poster="product.jpg">
+            <source src="detail1.mp4" type="video/mp4">
+            Votre navigateur ne prend pas en charge la lecture de vidéos.
+          </video>
+        </div>
       </div>
 
-      <div class="solution-box">
-        <h3>🌿 Ce qui marche pendant la nuit et se voit le matin</h3>
-        <p>Les patchs <strong>AuraPedis</strong> combinent des ingrédients 100% naturels (bambou, tourmaline, charbon actif) pour absorber les impuretés de votre organisme pendant votre sommeil.</p>
-        
-        <div class="benefit-item">
-          <span>✨</span>
-          <p><strong>Réveil plein d'énergie :</strong> Retrouvez des jambes légères dès la première semaine.</p>
+      <!-- DEUXIEME VIDEO (Detail2.mp4) -->
+      <div class="content-block">
+        <h3>🌿 Résultats visibles dès le matin</h3>
+        <p>Les ingrédients 100% naturels (Bambou, Tourmaline, Charbon actif) absorbent les toxines pendant votre sommeil.</p>
+        <div class="video-wrapper">
+          <video controls poster="product1.jpg">
+            <source src="Detail2.mp4" type="video/mp4">
+            Votre navigateur ne prend pas en charge la lecture de vidéos.
+          </video>
         </div>
-        <div class="benefit-item">
-          <span>💤</span>
-          <p><strong>Sommeil réparateur :</strong> Favorise une relaxation profonde et un sommeil paisible.</p>
-        </div>
-        <div class="benefit-item">
-          <span>🦶</span>
-          <p><strong>Action ciblée :</strong> Le patch change de couleur le matin, preuve visuelle de l'élimination des toxines.</p>
-        </div>
-      </div>
-
-      <div class="usage-box">
-        <h3>📋 Mode d'emploi : 3 étapes simples</h3>
-        <ol class="steps-list">
-          <li><strong>Ouvrez le sachet :</strong> Sortez le patch protecteur avant d'aller dormir.</li>
-          <li><strong>Collez sous le pied :</strong> Placez la face adhésive au centre de la plante du pied.</li>
-          <li><strong>Laissez agir 6 à 8h :</strong> Retirez-le le matin au réveil et admirez le résultat.</li>
-        </ol>
-      </div>
-
-      <div class="ingredients-box">
-        <h3>🌱 Des ingrédients d'origine naturelle</h3>
-        <ul>
-          <li><strong>Charbon actif :</strong> Élimine les impuretés et toxines.</li>
-          <li><strong>Extrait de Bambou :</strong> Stimule la circulation et apporte une sensation de fraîcheur.</li>
-          <li><strong>Tourmaline :</strong> Minéral apaisant pour favoriser la détente musculaire.</li>
-        </ul>
       </div>
 
     </section>
 
   </main>
 
-  <!-- INTERACTIVITÉ JAVASCRIPT -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const orderForm = document.getElementById('orderForm');
+    // Logique d'envoi de la commande sur WhatsApp
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
       
-      if (orderForm) {
-        orderForm.addEventListener('submit', function(e) {
-          e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const city = document.getElementById('city').value;
+      const pack = document.querySelector('input[name="pack"]:checked').value;
+      
+      let packName = "1 Boîte (7 999 FCFA)";
+      if (pack === "15999") packName = "Pack Duo (15 999 FCFA)";
+      if (pack === "21999") packName = "Pack Trio (21 999 FCFA)";
 
-          // ⚠️ REMPLACE PAR TON NUMÉRO WHATSAPP (ex: 237699000000)
-          const targetPhone = "237600000000"; 
-
-          // Récupération du pack sélectionné
-          const packElement = document.querySelector('input[name="pack"]:checked');
-          const packText = packElement ? packElement.closest('label').querySelector('span').innerText : "Non spécifié";
-          
-          // Récupération des informations du client
-          const fullname = document.getElementById('fullname').value.trim();
-          const phone = document.getElementById('phone').value.trim();
-          const city = document.getElementById('city').value.trim();
-
-          // Préparation du message structuré
-          const message = `🛍️ *NOUVELLE COMMANDE AURAPEDIS*\n\n` +
-                          `📦 *Produit :* ${packText}\n` +
-                          `👤 *Nom :* ${fullname}\n` +
-                          `📞 *Téléphone :* ${phone}\n` +
-                          `📍 *Livraison :* ${city}\n\n` +
-                          `Merci de me contacter pour confirmer la livraison !`;
-
-          // Redirection vers WhatsApp
-          const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(message)}`;
-          window.location.href = whatsappUrl;
-        });
-      }
+      const message = `Bonjour AuraPedis, je souhaite commander :\n\n- Pack : ${packName}\n- Nom : ${name}\n- Téléphone : ${phone}\n- Ville/Quartier : ${city}\n\nPaiement à la livraison.`;
+      
+      // Remplace avec ton vrai numéro WhatsApp
+      const whatsappNumber = "237688630287"; 
+      
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
     });
   </script>
-
 </body>
 </html>
