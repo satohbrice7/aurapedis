@@ -122,7 +122,7 @@
       gap: 6px;
     }
 
-    /* FORMULAIRE & OFFRES (STYLE VITAKMER) */
+    /* FORMULAIRE & OFFRES */
     .checkout-box {
       background: #ffffff;
       border: 1.5px solid #e2ece9;
@@ -219,9 +219,40 @@
       margin-top: 10px;
     }
 
-    /* SECTION DESCRIPTION FLUIDE (STYLE VITAKMER) */
+    /* VIDÉOS VERTICALES (2 VIDÉOS : demo1.mp4 & demo2.mp4) */
+    .vertical-videos-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin: 25px 0 15px;
+      text-align: center;
+    }
+
+    .vertical-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .vertical-video-box {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .vertical-video-box video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* SECTION DESCRIPTION FLUIDE (A1.jpg À A9.jpg) */
     .description-section {
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .story-block {
@@ -252,37 +283,6 @@
       object-fit: cover;
       margin-top: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-
-    /* VIDÉOS VERTICALES (demo1.mp4 à demo4.mp4) */
-    .vertical-videos-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin: 35px 0 15px;
-      text-align: center;
-    }
-
-    .vertical-video-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 35px;
-    }
-
-    .vertical-video-box {
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .vertical-video-box video {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      display: block;
-      object-fit: cover;
     }
 
     /* AVIS & FAQ */
@@ -401,7 +401,7 @@
       <div class="badge-item">💵 Paiement à la Livraison</div>
     </div>
 
-    <!-- FORMULAIRE DE COMMANDE EN COULEURS (STYLE VITAKMER) -->
+    <!-- FORMULAIRE DE COMMANDE -->
     <div class="checkout-box">
       <div class="checkout-header">🛒 Commander Maintenant (Paiement à la livraison)</div>
       
@@ -455,7 +455,22 @@
       </form>
     </div>
 
-    <!-- SECTION DESCRIPTION STYLE VITAKMER (TEXTE SUIVI DE CHAQUE PHOTO A1 À A9) -->
+    <!-- SECTION VIDÉOS VERTICALES (PLACÉES JUSTE EN DESSOUS DU FORMULAIRE DE COMMANDE) -->
+    <h2 class="vertical-videos-title">📱 Démos Vidéos en direct</h2>
+    <div class="vertical-video-grid">
+      <div class="vertical-video-box">
+        <video controls poster="1.jpg">
+          <source src="demo1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="vertical-video-box">
+        <video controls poster="2.jpg">
+          <source src="demo2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- SECTION DESCRIPTION (TEXTE SUIVI DE CHAQUE PHOTO A1 À A9) -->
     <section class="description-section">
       
       <!-- Étape / Argument 1 -->
@@ -543,31 +558,6 @@
 
     </section>
 
-    <!-- SECTION VIDÉOS VERTICALES (demo1.mp4 à demo4.mp4) -->
-    <h2 class="vertical-videos-title">📱 Démos Vidéos en direct</h2>
-    <div class="vertical-video-grid">
-      <div class="vertical-video-box">
-        <video controls poster="1.jpg">
-          <source src="demo1.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="vertical-video-box">
-        <video controls poster="2.jpg">
-          <source src="demo2.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="vertical-video-box">
-        <video controls poster="3.jpg">
-          <source src="demo3.mp3" type="video/mp4">
-        </video>
-      </div>
-      <div class="vertical-video-box">
-        <video controls poster="4.jpg">
-          <source src="demo4.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
     <!-- SECTION AVIS CLIENTS -->
     <section class="reviews-section">
       <h2 class="reviews-title">💬 Ce que disent nos clients</h2>
@@ -646,7 +636,7 @@
 
       const message = `Bonjour AuraPedis, je souhaite commander :\n\n- Pack : ${packName}\n- Nom : ${name}\n- Téléphone : ${phone}\n- Ville/Quartier : ${city}\n\nPaiement à la livraison.`;
       
-      const whatsappNumber = "237688630287"; // Ton numéro WhatsApp
+      const whatsappNumber = "237600000000"; // Ton numéro WhatsApp
       
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
