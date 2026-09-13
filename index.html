@@ -11,6 +11,9 @@
       --light-bg: #f4f8f7;
       --text-dark: #222222;
       --badge-green: #eef9f5;
+      --card-bg-1: #e8f5e9;
+      --card-bg-2: #e0f2f1;
+      --card-bg-3: #fff8e1;
     }
 
     * {
@@ -26,7 +29,6 @@
       padding-bottom: 30px;
     }
 
-    /* Bandeau supérieur */
     .top-banner {
       background-color: var(--primary-color);
       color: white;
@@ -36,7 +38,6 @@
       font-weight: 500;
     }
 
-    /* En-tête / Logo */
     header {
       padding: 15px;
       text-align: center;
@@ -56,7 +57,7 @@
       padding: 15px;
     }
 
-    /* CARROUSEL DÉFILANT */
+    /* CARROUSEL HAUT (1.jpg à 4.jpg) */
     .carousel-container {
       width: 100%;
       overflow-x: auto;
@@ -87,7 +88,6 @@
       margin-bottom: 15px;
     }
 
-    /* Titre et Prix */
     .product-title {
       font-size: 22px;
       font-weight: 700;
@@ -102,7 +102,6 @@
       margin-bottom: 12px;
     }
 
-    /* Badges Réassurance */
     .trust-badges {
       display: flex;
       gap: 10px;
@@ -123,9 +122,9 @@
       gap: 6px;
     }
 
-    /* Formulaire de Commande */
+    /* FORMULAIRE & OFFRES (STYLE VITAKMER) */
     .checkout-box {
-      background: #fdfdfd;
+      background: #ffffff;
       border: 1.5px solid #e2ece9;
       border-radius: 16px;
       padding: 16px;
@@ -138,29 +137,54 @@
       font-weight: 700;
       color: var(--primary-color);
       margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .pack-option {
-      display: block;
-      border: 1.5px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 2px solid transparent;
       border-radius: 12px;
-      padding: 12px 15px;
-      margin-bottom: 10px;
+      padding: 14px 15px;
+      margin-bottom: 12px;
       cursor: pointer;
-      position: relative;
-      background: white;
+      transition: all 0.2s ease;
+    }
+
+    .pack-option.card-1 {
+      background-color: var(--card-bg-1);
+      border-color: #a5d6a7;
+    }
+    .pack-option.card-2 {
+      background-color: var(--card-bg-2);
+      border-color: #80cbc4;
+    }
+    .pack-option.card-3 {
+      background-color: var(--card-bg-3);
+      border-color: #ffe082;
     }
 
     .pack-option.selected {
       border-color: var(--primary-color);
-      background-color: #f0f7f6;
+      box-shadow: 0 0 0 2px var(--primary-color);
     }
 
-    .pack-option input {
-      margin-right: 10px;
+    .pack-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .pack-badge {
+      background: #ff5722;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 10px;
+      text-transform: uppercase;
     }
 
     .form-group {
@@ -174,7 +198,7 @@
       margin-bottom: 5px;
     }
 
-    .form-group input, .form-group select {
+    .form-group input {
       width: 100%;
       padding: 12px;
       border: 1px solid #ccc;
@@ -193,45 +217,152 @@
       font-weight: 700;
       cursor: pointer;
       margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
     }
 
-    /* Content & Videos */
-    .content-section {
-      margin-top: 25px;
+    /* SECTION DESCRIPTION FLUIDE (STYLE VITAKMER) */
+    .description-section {
+      margin-top: 30px;
     }
 
-    .content-block {
-      margin-bottom: 25px;
+    .story-block {
+      margin-bottom: 30px;
     }
 
-    .content-block h3 {
-      font-size: 17px;
+    .story-title {
+      font-size: 18px;
+      font-weight: 700;
       color: var(--primary-color);
-      margin-bottom: 8px;
-    }
-
-    .content-block p {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #444;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .video-wrapper {
+    .story-text {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 14px;
+    }
+
+    .story-img {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+      object-fit: cover;
+      margin-top: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    /* VIDÉOS VERTICALES (demo1.mp4 à demo4.mp4) */
+    .vertical-videos-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin: 35px 0 15px;
+      text-align: center;
+    }
+
+    .vertical-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+
+    .vertical-video-box {
       width: 100%;
       border-radius: 12px;
       overflow: hidden;
-      margin: 12px 0;
+      background: #000;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    video {
+    .vertical-video-box video {
       width: 100%;
+      aspect-ratio: 9 / 16;
       display: block;
+      object-fit: cover;
+    }
+
+    /* AVIS & FAQ */
+    .reviews-section {
+      background: #f9fbfb;
+      padding: 20px 15px;
+      border-radius: 16px;
+      margin: 30px 0;
+    }
+
+    .reviews-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .review-card {
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .stars {
+      color: #ffb400;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .review-text {
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .review-author {
+      font-size: 11px;
+      color: #777;
+      font-weight: 600;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+
+    .faq-question {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .faq-answer {
+      font-size: 13px;
+      color: #555;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 30px 15px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      font-size: 13px;
+      opacity: 0.8;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -249,18 +380,19 @@
 
   <main class="container">
 
-    <!-- CARROUSEL IMAGES (product.jpg, product1.jpg, product2.jpg) -->
+    <!-- CARROUSEL DES 4 CRÉATIVES -->
     <div class="carousel-container">
       <div class="carousel-track">
-        <img src="product.jpg" alt="AuraPedis Patchs 1" class="carousel-slide">
-        <img src="product1.jpg" alt="AuraPedis Patchs 2" class="carousel-slide">
-        <img src="product2.jpg" alt="AuraPedis Patchs 3" class="carousel-slide">
+        <img src="1.jpg" alt="AuraPedis Créative 1" class="carousel-slide">
+        <img src="2.jpg" alt="AuraPedis Créative 2" class="carousel-slide">
+        <img src="3.jpg" alt="AuraPedis Créative 3" class="carousel-slide">
+        <img src="4.jpg" alt="AuraPedis Créative 4" class="carousel-slide">
       </div>
     </div>
-    <div class="carousel-hint">👈 Glissez pour voir plus d'images 👉</div>
+    <div class="carousel-hint">👈 Glissez pour voir les visuels 👉</div>
 
     <!-- TITRE & PRIX -->
-    <h1 class="product-title">Patchs détox pour les pieds</h1>
+    <h1 class="product-title">Patchs Détox & Apaisants pour les pieds</h1>
     <div class="price-tag">7 999 FCFA</div>
 
     <!-- BADGES REASSURANCE -->
@@ -269,21 +401,36 @@
       <div class="badge-item">💵 Paiement à la Livraison</div>
     </div>
 
-    <!-- FORMULAIRE DE COMMANDE -->
+    <!-- FORMULAIRE DE COMMANDE EN COULEURS (STYLE VITAKMER) -->
     <div class="checkout-box">
       <div class="checkout-header">🛒 Commander Maintenant (Paiement à la livraison)</div>
       
       <form id="orderForm">
         <div class="form-group">
-          <label>Choisissez votre offre :</label>
-          <label class="pack-option selected">
-            <input type="radio" name="pack" value="7999" checked> 1 Boîte — 7 999 FCFA
+          <label style="margin-bottom: 10px;">Choisissez votre offre :</label>
+
+          <label class="pack-option card-1 selected">
+            <div class="pack-left">
+              <input type="radio" name="pack" value="7999" checked>
+              <span>1 Boîte</span>
+            </div>
+            <span>7 999 FCFA</span>
           </label>
-          <label class="pack-option">
-            <input type="radio" name="pack" value="15999"> Pack Duo (-25%) — 15 999 FCFA
+
+          <label class="pack-option card-2">
+            <div class="pack-left">
+              <input type="radio" name="pack" value="15999">
+              <span>Pack Duo <span class="pack-badge">-25%</span></span>
+            </div>
+            <span>15 999 FCFA</span>
           </label>
-          <label class="pack-option">
-            <input type="radio" name="pack" value="21999"> Pack Trio (-45%) — 21 999 FCFA
+
+          <label class="pack-option card-3">
+            <div class="pack-left">
+              <input type="radio" name="pack" value="21999">
+              <span>Pack Trio <span class="pack-badge">-45%</span></span>
+            </div>
+            <span>21 999 FCFA</span>
           </label>
         </div>
 
@@ -308,39 +455,183 @@
       </form>
     </div>
 
-    <!-- SECTIONS DEMONSTRATION VIDEO -->
-    <section class="content-section">
-
-      <!-- PREMIERE VIDEO (detail1.mp4) -->
-      <div class="content-block">
-        <h3>😡 Réveillez-vous enfin en pleine forme</h3>
-        <p>Découvrez comment éliminer l'épuisement et la sensation de jambes lourdes dès la première nuit d'utilisation.</p>
-        <div class="video-wrapper">
-          <video controls poster="product.jpg">
-            <source src="detail1.mp4" type="video/mp4">
-            Votre navigateur ne prend pas en charge la lecture de vidéos.
-          </video>
-        </div>
+    <!-- SECTION DESCRIPTION STYLE VITAKMER (TEXTE SUIVI DE CHAQUE PHOTO A1 À A9) -->
+    <section class="description-section">
+      
+      <!-- Étape / Argument 1 -->
+      <div class="story-block">
+        <h2 class="story-title">😡 Matin brutal : vous vous relevez et vous n'en pouvez plus</h2>
+        <p class="story-text">
+          Encore ce réveil où vos jambes sont lourdes et lourdes comme "vidées". Le même goût d'épuisement, la sensation de corps rempli de toxines. Demandez-vous : combien de matins de plus avant d'agir ?
+        </p>
+        <img src="A1.jpg" alt="Jambes lourdes et fatigue" class="story-img">
       </div>
 
-      <!-- DEUXIEME VIDEO (Detail2.mp4) -->
-      <div class="content-block">
-        <h3>🌿 Résultats visibles dès le matin</h3>
-        <p>Les ingrédients 100% naturels (Bambou, Tourmaline, Charbon actif) absorbent les toxines pendant votre sommeil.</p>
-        <div class="video-wrapper">
-          <video controls poster="product1.jpg">
-            <source src="Detail2.mp4" type="video/mp4">
-            Votre navigateur ne prend pas en charge la lecture de vidéos.
-          </video>
-        </div>
+      <!-- Étape / Argument 2 -->
+      <div class="story-block">
+        <h2 class="story-title">🌿 Ce qui marche pendant la nuit et se voit le matin</h2>
+        <p class="story-text">
+          Ce patch est composé d'ingrédients 100% naturels. La preuve ? Il change de couleur dès la première nuit, offrant une indication visuelle claire au petit matin. Vous verrez par vous-même !
+        </p>
+        <img src="A2.jpg" alt="Changement de couleur du patch" class="story-img">
+      </div>
+
+      <!-- Étape / Argument 3 -->
+      <div class="story-block">
+        <h2 class="story-title">🧲 Le patch agit comme un 'aimant' pendant la nuit</h2>
+        <p class="story-text">
+          La nuit, transpiration + ingrédients de bambou et tourmaline réagissent ensemble. Le patch change de couleur pour montrer le travail — c'est ce choc visuel du matin qui convainc. Simple, visible, brutal.
+        </p>
+        <img src="A3.jpg" alt="Action aimant des toxines" class="story-img">
+      </div>
+
+      <!-- Étape / Argument 4 -->
+      <div class="story-block">
+        <h2 class="story-title">🔥 Ce qui change dès la première semaine</h2>
+        <p class="story-text">
+          Vos jambes retrouvent de la légèreté, votre sommeil devient plus profond et vos matinées plus actives. Ne restez pas celui/celle qui subit : soyez celui/celle qui reprend sa place.
+        </p>
+        <img src="A4.jpg" alt="Réveil plein d'énergie" class="story-img">
+      </div>
+
+      <!-- Étape / Argument 5 -->
+      <div class="story-block">
+        <h2 class="story-title">☑️ Mode d'emploi : 3 étapes ultra simples</h2>
+        <p class="story-text">
+          <strong>1)</strong> Ouvrez la boîte.<br>
+          <strong>2)</strong> Collez le patch sur la semelle avant d'aller dormir — facile et discret.<br>
+          <strong>3)</strong> Le matin, regardez le patch : la couleur vous dira tout. Testé dermatologiquement sur peaux sensibles.
+        </p>
+        <img src="A5.jpg" alt="Mode d'emploi 3 étapes" class="story-img">
+      </div>
+
+      <!-- Étape / Argument 6 -->
+      <div class="story-block">
+        <h2 class="story-title">🍃 Des ingrédients d'origine naturelle</h2>
+        <p class="story-text">
+          Chaque patch associe des extraits végétaux traditionnellement utilisés dans les soins bien-être. Cette formule naturelle est pensée pour s'intégrer facilement à votre quotidien et compléter un mode de vie sain.
+        </p>
+        <img src="A6.jpg" alt="Ingrédients naturels" class="story-img">
+      </div>
+
+      <!-- Étape / Argument 7 -->
+      <div class="story-block">
+        <h2 class="story-title">🎯 Ce qui compte à l'intérieur pour vos résultats</h2>
+        <p class="story-text">
+          Du charbon actif, du vinaigre de bambou, des extraits de plantes apaisantes et des minéraux essentiels. Quelques secondes avant de dormir suffisent pour intégrer les Patchs Détox à votre routine.
+        </p>
+        <img src="A7.jpg" alt="Formule interne du patch" class="story-img">
+      </div>
+
+      <!-- Étape / Argument 8 -->
+      <div class="story-block">
+        <h2 class="story-title">⭐ Dites adieu à l'ancienne façon</h2>
+        <p class="story-text">
+          Adoptez la nouvelle solution simple, propre et efficace pour prendre soin de vos pieds sans tracas nocturnes.
+        </p>
+        <img src="A8.jpg" alt="Nouvelle solution facile" class="story-img">
+      </div>
+
+      <!-- Étape / Argument 9 -->
+      <div class="story-block">
+        <h2 class="story-title">⚡ Agissez maintenant : prenez soin de vos pieds</h2>
+        <p class="story-text">
+          Essayez dès ce soir et laissez le matin juger. Paiement à la livraison, stocks limités — prenez votre décision maintenant. Ne laissez pas le prochain silence décider pour vous.
+        </p>
+        <img src="A9.jpg" alt="Prenez soin de vos pieds" class="story-img">
       </div>
 
     </section>
 
+    <!-- SECTION VIDÉOS VERTICALES (demo1.mp4 à demo4.mp4) -->
+    <h2 class="vertical-videos-title">📱 Démos Vidéos en direct</h2>
+    <div class="vertical-video-grid">
+      <div class="vertical-video-box">
+        <video controls poster="1.jpg">
+          <source src="demo1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="vertical-video-box">
+        <video controls poster="2.jpg">
+          <source src="demo2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="vertical-video-box">
+        <video controls poster="3.jpg">
+          <source src="demo3.mp3" type="video/mp4">
+        </video>
+      </div>
+      <div class="vertical-video-box">
+        <video controls poster="4.jpg">
+          <source src="demo4.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- SECTION AVIS CLIENTS -->
+    <section class="reviews-section">
+      <h2 class="reviews-title">💬 Ce que disent nos clients</h2>
+
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">« Je me réveille avec des jambes légères et beaucoup moins de fatigue. Ces patchs sont devenus ma routine du soir ! »</p>
+        <div class="review-author">Mamadou K. — Yaoundé</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">« Après quelques nuits d'utilisation, je dors beaucoup mieux et je n'ai plus ces douleurs aux pieds. Très satisfait ! »</p>
+        <div class="review-author">Aline D. — Douala</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">« Livraison rapide à la maison et paiement à la réception sans problème. Je recommande à 100%. »</p>
+        <div class="review-author">Ibrahim S. — Bafoussam</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="margin-top: 30px;">
+      <h3 style="color: var(--primary-color); margin-bottom: 15px;">❓ Foire Aux Questions (FAQ)</h3>
+
+      <div class="faq-item">
+        <div class="faq-question">Comment utiliser les patchs AuraPedis ?</div>
+        <div class="faq-answer">Collez simplement un patch sous chaque pied avant de vous coucher et laissez agir 6 à 8 heures pendant la nuit. Retirez-le au matin.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Est-ce adapté aux peaux sensibles ?</div>
+        <div class="faq-answer">Oui, les patchs sont formulés à base d'ingrédients 100% naturels et hypoallergéniques.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Quels sont les délais de livraison ?</div>
+        <div class="faq-answer">La livraison est effectuée sous 24h à 48h à Yaoundé, Douala et dans les principales villes du Cameroun. Vous ne payez qu'à la livraison.</div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- FOOTER -->
+  <footer>
+    <h4>AuraPedis</h4>
+    <p>Votre partenaire bien-être au quotidien.</p>
+    <p style="margin-top: 10px;">Paiement sécurisé à la livraison • Cameroun</p>
+  </footer>
+
   <script>
-    // Logique d'envoi de la commande sur WhatsApp
+    // Sélection des offres
+    const packOptions = document.querySelectorAll('.pack-option');
+    packOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        packOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        option.querySelector('input[type="radio"]').checked = true;
+      });
+    });
+
+    // Envoi du formulaire WhatsApp
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
@@ -355,8 +646,7 @@
 
       const message = `Bonjour AuraPedis, je souhaite commander :\n\n- Pack : ${packName}\n- Nom : ${name}\n- Téléphone : ${phone}\n- Ville/Quartier : ${city}\n\nPaiement à la livraison.`;
       
-      // Remplace avec ton vrai numéro WhatsApp
-      const whatsappNumber = "237688630287"; 
+      const whatsappNumber = "237688630287"; // Ton numéro WhatsApp
       
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
