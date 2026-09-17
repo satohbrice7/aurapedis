@@ -182,24 +182,25 @@
         fbq('track', 'Purchase', { currency: 'XAF', value: parseFloat(savedPrice) });
       }
 
-      // 2. NOTIFICATION WEBHOOKY (MULTICHAMPS POUR GARANTIR L'AFFICHAGE)
+      // 2. ENVOI DE LA NOTIFICATION À WEBHOOKY
       const webhookUrl = "https://api.webhooky.app/pg61hxw5cx9jxtzt175lxld8";
 
-      const details = `👤 Client: ${fullname}\n📞 Tel: ${savedPhone}\n📦 Offre: ${savedPack}\n📍 Lieu: ${neighborhood}\n📅 Date: ${deliveryDate} (${deliveryTime})`;
+      const messageContent = `Client: ${fullname}\nTel: ${savedPhone}\nOffre: ${savedPack}\nLieu: ${neighborhood}\nDate: ${deliveryDate} (${deliveryTime})`;
 
       const payload = {
         title: "💰 NOUVELLE COMMANDE AURAPEDIS !",
-        message: details,
-        content: details,
-        text: details
+        message: messageContent
       };
 
       fetch(webhookUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(payload)
       })
-      .then(() => console.log("Notification envoyée avec succès !"))
+      .then(response => console.log("Statut notification:", response.status))
       .catch(err => console.error("Erreur Webhooky:", err));
 
       // 3. AFFICHAGE DE LA CONFIRMATION CLIENT
