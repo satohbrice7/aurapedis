@@ -517,22 +517,12 @@
         </div>
 
         <div class="form-group">
-          <label for="name">Nom complet *</label>
-          <input type="text" id="name" placeholder="Votre nom complet" required>
-        </div>
-
-        <div class="form-group">
           <label for="phone">Téléphone / WhatsApp *</label>
           <input type="tel" id="phone" placeholder="+237 ..." required>
         </div>
 
-        <div class="form-group">
-          <label for="city">Ville / Quartier *</label>
-          <input type="text" id="city" placeholder="Ex: Yaoundé, Bastos" required>
-        </div>
-
         <button type="submit" class="btn-submit">
-          ✓ Confirmer la Commande
+          Continuer la commande 👉
         </button>
       </form>
     </div>
@@ -712,30 +702,36 @@
       });
     });
 
-    // FORMULAIRE DE COMMANDE + TRACKING FACEBOOK PURCHASE
+    // TRAITEMENT ÉTAPE 1 : REDIRECTION VERS CHECKOUT.HTML
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const name = document.getElementById('name').value;
       const phone = document.getElementById('phone').value;
-      const city = document.getElementById('city').value;
-      const pack = document.querySelector('input[name="pack"]:checked').value;
+      const selectedPack = document.querySelector('input[name="pack"]:checked').value;
       
       let packName = "1 Boîte (7 900 FCFA)";
-      if (pack === "11900") packName = "Pack Duo (11 900 FCFA)";
-      if (pack === "13900") packName = "Pack Trio (13 900 FCFA)";
+      let price = 7900;
 
-      // Envoi de l'événement de conversion vers Facebook Pixel
-      if (typeof fbq === 'function') {
-        fbq('track', 'Purchase', { currency: 'XAF', value: parseFloat(pack) });
+      if (selectedPack === "11900") {
+        packName = "Pack Duo (11 900 FCFA)";
+        price = 11900;
+      } else if (selectedPack === "13900") {
+        packName = "Pack Trio (13 900 FCFA)";
+        price = 13900;
       }
 
-      const message = `Bonjour AuraPedis, je souhaite commander :\n\n- Pack : ${packName}\n- Nom : ${name}\n- Téléphone : ${phone}\n- Ville/Quartier : ${city}\n\nPaiement à la livraison.`;
-      
-      const whatsappNumber = "237688630287"; // Remplacez par votre numéro WhatsApp
-      
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+      // Tracking Meta Pixel : Intention d'achat (InitiateCheckout)
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', { currency: 'XAF', value: price });
+      }
+
+      // Sauvegarde des données dans le navigateur pour la page suivante
+      localStorage.setItem('checkout_phone', phone);
+      localStorage.setItem('checkout_pack', packName);
+      localStorage.setItem('checkout_price', price);
+
+      // Redirection vers la page de finalisation
+      window.location.href = "checkout.html";
     });
   </script>
 </body>
