@@ -182,12 +182,16 @@
         fbq('track', 'Purchase', { currency: 'XAF', value: parseFloat(savedPrice) });
       }
 
-      // 2. NOTIFICATION WEBHOOKY (CHAMP "content")
+      // 2. NOTIFICATION WEBHOOKY (MULTICHAMPS POUR GARANTIR L'AFFICHAGE)
       const webhookUrl = "https://api.webhooky.app/pg61hxw5cx9jxtzt175lxld8";
+
+      const details = `👤 Client: ${fullname}\n📞 Tel: ${savedPhone}\n📦 Offre: ${savedPack}\n📍 Lieu: ${neighborhood}\n📅 Date: ${deliveryDate} (${deliveryTime})`;
 
       const payload = {
         title: "💰 NOUVELLE COMMANDE AURAPEDIS !",
-        content: `👤 Client: ${fullname}\n📞 Tel: ${savedPhone}\n📦 Offre: ${savedPack}\n📍 Lieu: ${neighborhood}\n📅 Date: ${deliveryDate} (${deliveryTime})`
+        message: details,
+        content: details,
+        text: details
       };
 
       fetch(webhookUrl, {
