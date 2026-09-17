@@ -177,25 +177,27 @@
       const deliveryDate = document.getElementById('deliveryDate').value;
       const deliveryTime = document.getElementById('deliveryTime').value;
 
-      // TRACKING PIXEL FACEBOOK (Purchase)
+      // 1. TRACKING PIXEL FACEBOOK (Purchase)
       if (typeof fbq === 'function') {
         fbq('track', 'Purchase', { currency: 'XAF', value: parseFloat(savedPrice) });
       }
 
-      // Préparation du message/objet de la commande à envoyer en base ou Google Sheets
-      const orderData = {
-        nom: fullname,
-        telephone: savedPhone,
-        pack: savedPack,
-        quartier: neighborhood,
-        jour: deliveryDate,
-        heure: deliveryTime,
-        dateCommande: new Date().toLocaleString()
+      // 2. NOTIFICATION SONORE EN TEMPS RÉEL (WEBHOOKY)
+      const webhookUrl = "https://api.webhooky.app/pg61hxw5cx9jxtzt175lxld8";
+
+      const payload = {
+        title: "💰 NOUVELLE COMMANDE AURAPEDIS !",
+        message: `👤 Client: ${fullname}\n📞 Tel: ${savedPhone}\n📦 Offre: ${savedPack}\n📍 Lieu: ${neighborhood}\n📅 Date: ${deliveryDate} (${deliveryTime})`,
+        sound: "cash_register"
       };
 
-      console.log("Commande enregistrée :", orderData);
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.error("Erreur envoi notification Webhooky:", err));
 
-      // Affichage du message de confirmation sur la page
+      // 3. AFFICHAGE DE LA CONFIRMATION CLIENT
       document.getElementById('clientName').textContent = fullname;
       document.getElementById('clientPack').textContent = savedPack;
       document.getElementById('clientPhone').textContent = savedPhone;
