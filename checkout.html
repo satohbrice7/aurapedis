@@ -182,20 +182,21 @@
         fbq('track', 'Purchase', { currency: 'XAF', value: parseFloat(savedPrice) });
       }
 
-      // 2. NOTIFICATION SONORE EN TEMPS RÉEL (WEBHOOKY)
+      // 2. NOTIFICATION WEBHOOKY (CHAMP "content")
       const webhookUrl = "https://api.webhooky.app/pg61hxw5cx9jxtzt175lxld8";
 
       const payload = {
         title: "💰 NOUVELLE COMMANDE AURAPEDIS !",
-        message: `👤 Client: ${fullname}\n📞 Tel: ${savedPhone}\n📦 Offre: ${savedPack}\n📍 Lieu: ${neighborhood}\n📅 Date: ${deliveryDate} (${deliveryTime})`,
-        sound: "cash_register"
+        content: `👤 Client: ${fullname}\n📞 Tel: ${savedPhone}\n📦 Offre: ${savedPack}\n📍 Lieu: ${neighborhood}\n📅 Date: ${deliveryDate} (${deliveryTime})`
       };
 
       fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      }).catch(err => console.error("Erreur envoi notification Webhooky:", err));
+      })
+      .then(() => console.log("Notification envoyée avec succès !"))
+      .catch(err => console.error("Erreur Webhooky:", err));
 
       // 3. AFFICHAGE DE LA CONFIRMATION CLIENT
       document.getElementById('clientName').textContent = fullname;
