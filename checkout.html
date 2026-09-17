@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraPedis - Finalisation de la commande</title>
+  
+  <!-- META PIXEL FACEBOOK -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'VOTRE_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+
+  <style>
+    :root {
+      --primary-color: #0f5257;
+      --light-bg: #f4f8f7;
+      --text-dark: #222222;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--light-bg); color: var(--text-dark); padding: 20px 15px; }
+
+    .checkout-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .info-notice {
+      background-color: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .info-notice p {
+      font-size: 14px;
+      color: #1b5e20;
+      line-height: 1.5;
+    }
+
+    .summary-box {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .summary-box div { margin-bottom: 5px; }
+    .summary-box span { font-weight: 700; color: var(--primary-color); }
+
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;
+    }
+    .form-group input[readonly] { background-color: #e0e0e0; cursor: not-allowed; }
+
+    .form-row { display: flex; gap: 10px; }
+
+    .btn-confirm {
+      width: 100%; background-color: var(--primary-color); color: white; border: none;
+      padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* Message de confirmation (masqué par défaut) */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 30px 10px;
+    }
+    .success-icon { font-size: 50px; margin-bottom: 15px; }
+    .success-title { color: var(--primary-color); font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+    .success-text { font-size: 15px; color: #444; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <div class="checkout-card" id="formContainer">
+    
+    <!-- MESSAGE POLI / RÉASSURANCE -->
+    <div class="info-notice">
+      <p>📌 <strong>Information importante :</strong> Merci pour votre confiance ! Dès la validation de ce formulaire, notre équipe logistique vous contactera par téléphone pour confirmer la livraison et convenir du créneau exact.</p>
+    </div>
+
+    <!-- RÉCAPITULATIF PRÉ-REMPLI -->
+    <div class="summary-box">
+      <div>Commande : <span id="summaryPack">-</span></div>
+      <div>Numéro : <span id="summaryPhone">-</span></div>
+    </div>
+
+    <form id="finalForm">
+      
+      <!-- CHAMPS MASQUÉS / PRÉ-REMPLIS -->
+      <input type="hidden" id="phoneInput">
+      <input type="hidden" id="packInput">
+
+      <div class="form-group">
+        <label for="fullname">Nom et Prénom *</label>
+        <input type="text" id="fullname" placeholder="Ex: Jean Emmanuel" required>
+      </div>
+
+      <div class="form-group">
+        <label for="neighborhood">Ville et Quartier de livraison *</label>
+        <input type="text" id="neighborhood" placeholder="Ex: Yaoundé, Bastos près de la pharmacie" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" style="flex: 1;">
+          <label for="deliveryDate">Jour souhaité *</label>
+          <select id="deliveryDate" required>
+            <option value="Aujourd'hui">Aujourd'hui</option>
+            <option value="Demain">Demain</option>
+            <option value="Dans 2 jours">Dans 2 jours</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="flex: 1;">
+          <label for="deliveryTime">Heure souhaitée *</label>
+          <select id="deliveryTime" required>
+            <option value="Matin (08h - 12h)">Matin (08h - 12h)</option>
+            <option value="Aprem (12h - 16h)">Aprem (12h - 16h)</option>
+            <option value="Soir (16h - 19h)">Soir (16h - 19h)</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-confirm">
+        ✅ Valider ma commande définitivement
+      </button>
+    </form>
+  </div>
+
+  <!-- ÉCRAN DE CONFIRMATION APRÈS VALIDATION -->
+  <div class="checkout-card success-screen" id="successScreen">
+    <div class="success-icon">🎉</div>
+    <h2 class="success-title">Commande Enregistrée !</h2>
+    <p class="success-text">
+      Merci <strong id="clientName"></strong>.<br><br>
+      Votre commande pour le <strong><span id="clientPack"></span></strong> a bien été prise en compte.<br><br>
+      Un agent de notre service client va vous appeler sous peu au <strong id="clientPhone"></strong> pour valider l'expédition à <strong><span id="clientPlace"></span></strong>.
+    </p>
+  </div>
+
+  <script>
+    // Récupération des données venant de la page précédente
+    const savedPhone = localStorage.getItem('checkout_phone') || '';
+    const savedPack = localStorage.getItem('checkout_pack') || '1 Boîte';
+    const savedPrice = localStorage.getItem('checkout_price') || 7900;
+
+    document.getElementById('summaryPhone').textContent = savedPhone;
+    document.getElementById('summaryPack').textContent = savedPack;
+    document.getElementById('phoneInput').value = savedPhone;
+    document.getElementById('packInput').value = savedPack;
+
+    // Envoi de la commande finale
+    document.getElementById('finalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const fullname = document.getElementById('fullname').value;
+      const neighborhood = document.getElementById('neighborhood').value;
+      const deliveryDate = document.getElementById('deliveryDate').value;
+      const deliveryTime = document.getElementById('deliveryTime').value;
+
+      // TRACKING PIXEL FACEBOOK (Purchase)
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', { currency: 'XAF', value: parseFloat(savedPrice) });
+      }
+
+      // Préparation du message/objet de la commande à envoyer en base ou Google Sheets
+      const orderData = {
+        nom: fullname,
+        telephone: savedPhone,
+        pack: savedPack,
+        quartier: neighborhood,
+        jour: deliveryDate,
+        heure: deliveryTime,
+        dateCommande: new Date().toLocaleString()
+      };
+
+      console.log("Commande enregistrée :", orderData);
+
+      // Affichage du message de confirmation sur la page
+      document.getElementById('clientName').textContent = fullname;
+      document.getElementById('clientPack').textContent = savedPack;
+      document.getElementById('clientPhone').textContent = savedPhone;
+      document.getElementById('clientPlace').textContent = neighborhood;
+
+      document.getElementById('formContainer').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+
+      // Nettoyage du localStorage
+      localStorage.clear();
+    });
+  </script>
+</body>
+</html>
