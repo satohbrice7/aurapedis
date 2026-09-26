@@ -44,7 +44,7 @@
     body {
       background-color: #ffffff;
       color: var(--text-dark);
-      padding-bottom: 30px;
+      padding-bottom: 90px; /* Espace pour ne pas masquer le contenu avec le bouton sticky */
     }
 
     .top-banner {
@@ -270,7 +270,39 @@
       margin-top: 10px;
     }
 
-    /* VIDÉOS VERTICALES EN LECTURE CONTINUE (AUTOPLAY / LOOP) */
+    /* BOUTON STICKY EN BAS DE L'ÉCRAN MOBILE */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      padding: 10px 15px;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.12);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sticky-btn {
+      width: 100%;
+      max-width: 500px;
+      background-color: var(--accent-green);
+      color: #ffffff;
+      text-align: center;
+      padding: 14px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* VIDÉOS VERTICALES EN LECTURE CONTINUE */
     .vertical-videos-title {
       font-size: 18px;
       font-weight: 700;
@@ -484,7 +516,7 @@
       <div class="badge-item">💵 Paiement à la Livraison</div>
     </div>
 
-    <div class="checkout-box">
+    <div class="checkout-box" id="orderSection">
       <div class="checkout-header">🛒 Commander Maintenant (Paiement à la livraison)</div>
       
       <form id="orderForm">
@@ -548,7 +580,7 @@
         <p class="story-text">
           Encore ce réveil où vos jambes sont lourdes et lourdes comme "vidées". Le même goût d'épuisement, la sensation de corps rempli de toxines. Demandez-vous : combien de matins de plus avant d'agir ?
         </p>
-        <img src="A1.jpg" alt="Jambes lourdes et fatigue" class="story-img">
+        <img src="A1.jpg" alt="Jambes lourdes et fatigue" class="story-img" loading="lazy">
       </div>
 
       <div class="story-block">
@@ -556,7 +588,7 @@
         <p class="story-text">
           Ce patch est composé d'ingrédients 100% naturels. La preuve ? Il change de couleur dès la première nuit, offrant une indication visuelle claire au petit matin. Vous verrez par vous-même !
         </p>
-        <img src="A2.jpg" alt="Changement de couleur du patch" class="story-img">
+        <img src="A2.jpg" alt="Changement de couleur du patch" class="story-img" loading="lazy">
       </div>
 
       <div class="story-block">
@@ -564,7 +596,7 @@
         <p class="story-text">
           La nuit, transpiration + ingrédients de bambou et tourmaline réagissent ensemble. Le patch change de couleur pour montrer le travail — c'est ce choc visuel du matin qui convainc. Simple, visible, brutal.
         </p>
-        <img src="A3.jpg" alt="Action aimant des toxines" class="story-img">
+        <img src="A3.jpg" alt="Action aimant des toxines" class="story-img" loading="lazy">
       </div>
 
       <div class="story-block">
@@ -572,7 +604,7 @@
         <p class="story-text">
           Vos jambes retrouvent de la légèreté, votre sommeil devient plus profond et vos matinées plus actives. Ne restez pas celui/celle qui subit : soyez celui/celle qui reprend sa place.
         </p>
-        <img src="A4.jpg" alt="Réveil plein d'énergie" class="story-img">
+        <img src="A4.jpg" alt="Réveil plein d'énergie" class="story-img" loading="lazy">
       </div>
 
       <div class="story-block">
@@ -582,7 +614,7 @@
           <strong>2)</strong> Collez le patch sur la semelle avant d'aller dormir — facile et discret.<br>
           <strong>3)</strong> Le matin, regardez le patch : la couleur vous dira tout. Testé dermatologiquement sur peaux sensibles.
         </p>
-        <img src="A5.jpg" alt="Mode d'emploi 3 étapes" class="story-img">
+        <img src="A5.jpg" alt="Mode d'emploi 3 étapes" class="story-img" loading="lazy">
       </div>
 
       <div class="story-block">
@@ -590,7 +622,7 @@
         <p class="story-text">
           Chaque patch associe des extraits végétaux traditionnellement utilisés dans les soins bien-être. Cette formule naturelle est pensée pour s'intégrer facilement à votre quotidien et compléter un mode de vie sain.
         </p>
-        <img src="A6.jpg" alt="Ingrédients naturels" class="story-img">
+        <img src="A6.jpg" alt="Ingrédients naturels" class="story-img" loading="lazy">
       </div>
 
       <div class="story-block">
@@ -598,7 +630,7 @@
         <p class="story-text">
           Du charbon actif, du vinaigre de bambou, des extraits de plantes apaisantes et des minéraux essentiels. Quelques secondes avant de dormir suffisent pour intégrer les Patchs Détox à votre routine.
         </p>
-        <img src="A7.jpg" alt="Formule interne du patch" class="story-img">
+        <img src="A7.jpg" alt="Formule interne du patch" class="story-img" loading="lazy">
       </div>
 
       <div class="story-block">
@@ -606,7 +638,7 @@
         <p class="story-text">
           Adoptez la nouvelle solution simple, propre et efficace pour prendre soin de vos pieds sans tracas nocturnes.
         </p>
-        <img src="A8.jpg" alt="Nouvelle solution facile" class="story-img">
+        <img src="A8.jpg" alt="Nouvelle solution facile" class="story-img" loading="lazy">
       </div>
 
       <div class="story-block">
@@ -614,7 +646,7 @@
         <p class="story-text">
           Essayez dès ce soir et laissez le matin juger. Paiement à la livraison, stocks limités — prenez votre décision maintenant. Ne laissez pas le prochain silence décider pour vous.
         </p>
-        <img src="A9.jpg" alt="Prenez soin de vos pieds" class="story-img">
+        <img src="A9.jpg" alt="Prenez soin de vos pieds" class="story-img" loading="lazy">
       </div>
 
     </section>
@@ -676,6 +708,13 @@
     </section>
 
   </main>
+
+  <!-- BARRE STICKY MOBILE -->
+  <div class="sticky-bar">
+    <a href="#orderSection" class="sticky-btn">
+      🛒 COMMANDER MAINTENANT
+    </a>
+  </div>
 
   <footer>
     <h4>AuraPedis</h4>
